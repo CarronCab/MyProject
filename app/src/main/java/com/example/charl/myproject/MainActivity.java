@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
                     j++;
                 }
                 Log.d("bbb", String.valueOf(tmp.size()));
-                //Display (tmp, tmp.size());
+                Display (tmp, tmp.size());
             }
 
             @Override
