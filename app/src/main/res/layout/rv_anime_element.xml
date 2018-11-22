@@ -20,6 +20,8 @@
             android:text="@{anime.name}"
             android:textColor="@color/white"
             />
+        
+
 
     </RelativeLayout>
 

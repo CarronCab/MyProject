@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
         Api api = retrofit.create(Api.class);
 
         Call<List<Anime>> call = api.getAnime();
+        Call<List<Anime>> url = api.getUrl();
 
         call.enqueue(new Callback<List<Anime>>() {
             @Override
@@ -62,6 +63,31 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("aaaa", t.getMessage());
             }
         });
+
+/*
+        url.enqueue(new Callback<List<Anime>>() {
+            @Override
+            public void onResponse(Call<List<Anime>> url, Response<List<Anime>> response) {
+                animes = response.body();
+                int j = 0;
+                for (Anime h : animes) {
+
+                    Log.d("ttt", h.getUrl());
+                    tmp.add(j, h.getUrl());
+                    Log.d("lll", tmp.get(j));
+                    j++;
+                }
+                Log.d("jjj", String.valueOf(tmp.size()));
+                //ShowIamges (tmp, tmp.size());
+            }
+
+            @Override
+            public void onFailure(Call<List<Anime>> url, Throwable t) {
+                Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+                Log.d("ffff", t.getMessage());
+            }
+        });
+*/
 
     }
 
