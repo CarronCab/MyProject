@@ -1,12 +1,10 @@
 package com.example.charl.myproject;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.ListView;
 import android.widget.Toast;
-
-import org.json.JSONArray;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,8 +19,16 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class MainActivity extends AppCompatActivity {
 
     public List<Anime> list = new ArrayList<>();
-    public List<String> tmp = new ArrayList<String>();
-    public List<Anime> animes;
+    public List<Anime> animeList;
+
+    public List<String> nName = new ArrayList<String>();
+    public List<String> nRealName = new ArrayList<String>();
+    public List<String> nTeam = new ArrayList<String>();
+    public List<String> nFirstappearance = new ArrayList<String>();
+    public List<String> nCreatedby = new ArrayList<String>();
+    public List<String> nPublisher = new ArrayList<String>();
+    public List<String> nImageurl = new ArrayList<String>();
+    public List<String> nBio = new ArrayList<String>();
 
 
     @Override
@@ -31,6 +37,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
+        getAnimes();
+
+
+
+    }
+
+
+    public void getAnimes(){
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Api.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -39,22 +53,55 @@ public class MainActivity extends AppCompatActivity {
         Api api = retrofit.create(Api.class);
 
         Call<List<Anime>> call = api.getAnime();
-        Call<List<Anime>> url = api.getUrl();
 
         call.enqueue(new Callback<List<Anime>>() {
             @Override
             public void onResponse(Call<List<Anime>> call, Response<List<Anime>> response) {
-                 animes = response.body();
-                int j = 0;
-                for (Anime h : animes) {
+                animeList = response.body();
 
-                    Log.d("iii", h.getName());
-                    tmp.add(j, h.getName());
-                    Log.d("bbb", tmp.get(j));
-                    j++;
+
+                String[] animes = new String[animeList.size()];
+                String[] realName = new String[animeList.size()];
+                String[] team = new String[animeList.size()];
+                String[] firstappearance = new String[animeList.size()];
+                String[] createdby = new String[animeList.size()];
+                String[] publisher = new String[animeList.size()];
+                String[] imageurl = new String[animeList.size()];
+                String[] bio = new String[animeList.size()];
+
+                for(int i = 0; i < animeList.size(); i++){
+
+                    animes[i] = animeList.get(i).getName();
+                    realName[i] = animeList.get(i).getRealname();
+                    team[i] = animeList.get(i).getTeam();
+                    firstappearance[i] = animeList.get(i).getFirstappearance();
+                    createdby[i] = animeList.get(i).getCreatedby();
+                    publisher[i] = animeList.get(i).getPublisher();
+                    imageurl[i] = animeList.get(i).getImageurl();
+                    bio[i] = animeList.get(i).getBio();
+
+
+
+                    nName.add(i, animeList.get(i).getName());
+                    nRealName.add(i, animeList.get(i).getRealname());
+                    nTeam.add(i, animeList.get(i).getTeam());
+                    nFirstappearance.add(i, animeList.get(i).getFirstappearance());
+                    nCreatedby.add(i, animeList.get(i).getCreatedby());
+                    nPublisher.add(i, animeList.get(i).getPublisher());
+                    nImageurl.add(i, animeList.get(i).getImageurl());
+                    nBio.add(i, animeList.get(i).getBio());
+
+
                 }
-                Log.d("bbb", String.valueOf(tmp.size()));
-                Display (tmp, tmp.size());
+
+
+                for (int i = 0; i <animeList.size(); i++) {
+                    list.add(new Anime(nName.get(i),nRealName.get(i),nTeam.get(i),nFirstappearance.get(i),nCreatedby.get(i),nPublisher.get(i),nImageurl.get(i),nBio.get(i)));
+
+                }
+
+                Display();
+
             }
 
             @Override
@@ -63,46 +110,14 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("aaaa", t.getMessage());
             }
         });
-
-/*
-        url.enqueue(new Callback<List<Anime>>() {
-            @Override
-            public void onResponse(Call<List<Anime>> url, Response<List<Anime>> response) {
-                animes = response.body();
-                int j = 0;
-                for (Anime h : animes) {
-
-                    Log.d("ttt", h.getUrl());
-                    tmp.add(j, h.getUrl());
-                    Log.d("lll", tmp.get(j));
-                    j++;
-                }
-                Log.d("jjj", String.valueOf(tmp.size()));
-                //ShowIamges (tmp, tmp.size());
-            }
-
-            @Override
-            public void onFailure(Call<List<Anime>> url, Throwable t) {
-                Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
-                Log.d("ffff", t.getMessage());
-            }
-        });
-*/
-
     }
 
-    public void Display(List<String> listdisplay, int size) {
 
-        Log.d("hhh", String.valueOf(size));
-        for(int i = 0; i < listdisplay.size(); i++){
-            Log.d("ddd", listdisplay.get(i));
-        }
-        for (int i = 0; i <listdisplay.size(); i++) {
-            list.add(new Anime(listdisplay.get(i)));
+    public void Display() {
 
-        }
         ListView listView = findViewById(R.id.listView);
         listView.setAdapter(new CustomAdapter(this, list));
+
 
     }
 

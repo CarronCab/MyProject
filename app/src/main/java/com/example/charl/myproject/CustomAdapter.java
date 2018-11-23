@@ -7,9 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
-import java.util.List;
+import com.example.charl.myproject.databinding.RvAnimeElementBinding;
 
-import  com.example.charl.myproject.databinding.RvAnimeElementBinding;
+import java.util.List;
 
 public class CustomAdapter extends BaseAdapter {
 
@@ -48,6 +48,7 @@ public class CustomAdapter extends BaseAdapter {
             binding = (RvAnimeElementBinding) view.getTag();
         }
 
+        assert binding != null;
         binding.setAnime(listAnime.get(i));
         return binding.getRoot();
     }

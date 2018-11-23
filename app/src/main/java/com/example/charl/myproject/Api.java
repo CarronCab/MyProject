@@ -11,7 +11,5 @@ public interface Api {
     @GET("marvel")
     Call<List<Anime>> getAnime();
 
-    @GET("marvel")
-    Call<List<Anime>> getUrl();
 
 }

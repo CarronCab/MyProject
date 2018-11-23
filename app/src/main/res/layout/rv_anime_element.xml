@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <data>
         <variable
             name="anime"
             type="com.example.charl.myproject.Anime"/>
     </data>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -13,13 +16,57 @@
 
         <TextView
 
+        android:layout_margin="5dp"
+        android:layout_marginEnd="25dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@{anime.name}"
+        android:textColor="@color/white"
+        android:id="@+id/name"
+        />
+
+        <TextView
+        android:id="@+id/realName"
+        android:layout_margin="5dp"
+        android:layout_marginEnd="25dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@{anime.realname}"
+        android:textColor="@color/white"
+        android:layout_below="@id/name"
+        />
+
+        <TextView
+            android:id="@+id/team"
             android:layout_margin="5dp"
             android:layout_marginEnd="25dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{anime.name}"
+            android:text="@{anime.team}"
             android:textColor="@color/white"
+            android:layout_below="@id/realName"
             />
+
+        <TextView
+            android:id="@+id/firstappearance"
+            android:layout_margin="5dp"
+            android:layout_marginEnd="25dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{anime.firstappearance}"
+            android:textColor="@color/white"
+            android:layout_below="@id/team"
+            />
+
+
+        <com.example.charl.myproject.MyImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            app:imageURL="@{anime.imageurl}"
+            android:layout_below="@id/firstappearance"
+            android:id="@+id/image"/>
+
         
 
 
