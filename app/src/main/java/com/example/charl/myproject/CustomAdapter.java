@@ -1,22 +1,25 @@
 package com.example.charl.myproject;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 
 import com.example.charl.myproject.databinding.RvAnimeElementBinding;
 
 import java.util.List;
+
 
 public class CustomAdapter extends BaseAdapter {
 
     private List<Anime> listAnime;
     private Activity activity;
 
-    public CustomAdapter(Activity activity, List<Anime> listPerson){
+    CustomAdapter(Activity activity, List<Anime> listPerson){
         this.listAnime = listPerson;
         this.activity = activity;
     }
@@ -37,7 +40,8 @@ public class CustomAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int i, View view, ViewGroup viewGroup) {
+    public View getView(final int i, View view, ViewGroup viewGroup) {
+
 
         RvAnimeElementBinding binding;
         if(view == null){
@@ -48,8 +52,35 @@ public class CustomAdapter extends BaseAdapter {
             binding = (RvAnimeElementBinding) view.getTag();
         }
 
+        Button deleteBtn = view.findViewById(R.id.delete);
+
+        Button detailsBtn = view.findViewById(R.id.details);
+
+        deleteBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+
+                listAnime.remove(i);
+                notifyDataSetChanged();
+            }
+        });
+
+        final View finalView = view;
+        detailsBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+
+                Intent intent=new Intent(finalView.getContext(),HeroDetails.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra("id", i);
+                v.getContext().startActivity(intent);
+
+
+            }
+        });
+
         assert binding != null;
         binding.setAnime(listAnime.get(i));
         return binding.getRoot();
+
     }
 }

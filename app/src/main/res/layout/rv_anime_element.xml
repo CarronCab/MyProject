@@ -9,65 +9,91 @@
     </data>
 
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorAccent">
-
-
-        <TextView
-
-        android:layout_margin="5dp"
-        android:layout_marginEnd="25dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@{anime.name}"
-        android:textColor="@color/white"
-        android:id="@+id/name"
-        />
+        android:background="@drawable/marvelbackground">
 
-        <TextView
-        android:id="@+id/realName"
-        android:layout_margin="5dp"
-        android:layout_marginEnd="25dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@{anime.realname}"
-        android:textColor="@color/white"
-        android:layout_below="@id/name"
-        />
-
-        <TextView
-            android:id="@+id/team"
+        <com.example.charl.myproject.MyImageView
+            android:id="@+id/image"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
             android:layout_margin="5dp"
-            android:layout_marginEnd="25dp"
+            app:imageURL="@{anime.imageurl}" />
+
+        <TextView
+            android:id="@+id/name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{anime.team}"
+            android:layout_below="@id/image"
+            android:layout_margin="5dp"
+            android:layout_marginEnd="25dp"
+            android:background="@color/red"
+            android:text="@{anime.name}"
             android:textColor="@color/white"
-            android:layout_below="@id/realName"
-            />
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/realName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/name"
+            android:layout_margin="5dp"
+            android:layout_marginEnd="25dp"
+            android:background="@color/red"
+            android:text="@{anime.realname}"
+            android:textColor="@color/white"
+            android:textSize="19sp" />
+
 
         <TextView
             android:id="@+id/firstappearance"
-            android:layout_margin="5dp"
-            android:layout_marginEnd="25dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@id/name"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="5dp"
+            android:background="@color/red"
             android:text="@{anime.firstappearance}"
             android:textColor="@color/white"
-            android:layout_below="@id/team"
-            />
+            android:textSize="19sp" />
 
-
-        <com.example.charl.myproject.MyImageView
+        <TextView
+            android:id="@+id/team"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            app:imageURL="@{anime.imageurl}"
-            android:layout_below="@id/firstappearance"
-            android:id="@+id/image"/>
+            android:layout_below="@id/image"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="5dp"
+            android:background="@color/red"
+            android:text="@{anime.team}"
+            android:textColor="@color/white"
+            android:textSize="19sp" />
 
-        
+        <Button
+            android:id="@+id/delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/realName"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="5dp"
+            android:background="@color/black"
+            android:text="delete"
+            android:textColor="@color/white">
+
+        </Button>
+
+        <Button
+            android:id="@+id/details"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/realName"
+            android:layout_margin="5dp"
+            android:background="@color/black"
+            android:text="details"
+            android:textColor="@color/white">
+
+        </Button>
 
 
     </RelativeLayout>

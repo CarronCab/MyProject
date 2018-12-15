@@ -12,7 +12,12 @@ public class Anime {
     private String bio;
 
 
-    public Anime(String name, String realname, String team, String firstappearance, String createdby, String publisher, String imageurl, String bio) {
+
+    private int id;
+
+
+    public Anime(int id,String name, String realname, String team, String firstappearance, String createdby, String publisher, String imageurl, String bio) {
+        this.id = id;
         this.name = name;
         this.realname = realname;
         this.team = team;
@@ -21,6 +26,14 @@ public class Anime {
         this.publisher = publisher;
         this.imageurl = imageurl;
         this.bio = bio;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
